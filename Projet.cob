@@ -203,3 +203,27 @@ PROCEDURE DIVISION.
              ACCEPT Wrep
           END-PERFORM
         END-PERFORM.
+
+        AJOUT_ARTICLE.
+          OPEN I-O articles
+          PERFORM WITH TEST AFTER UNTIL Wrep = 0
+          DISPLAY "------- AJOUT ARTICLE -------"
+          DISPLAY "id artcile : "
+          ACCEPT fart_id
+          DISPLAY "nom article : "
+          ACCEPT fart_nom
+          DISPLAY "type article : "
+          ACCEPT fart_type
+          DISPLAY "description article : "
+          ACCEPT fart_description
+          DISPLAY "prix article : "
+          ACCEPT fart_prix
+          DISPLAY "duree garantie : "
+          ACCEPT fart_dureegaranti
+          WRITE fartTampon END-WRITE
+          PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
+             DISPLAY 'Souhaitez vous ajouter un autre bureau ? 1 ou 0'
+             ACCEPT Wrep
+            END-PERFORM
+          END-PERFORM
+          CLOSE articles.
