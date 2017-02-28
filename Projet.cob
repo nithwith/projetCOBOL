@@ -90,6 +90,8 @@ FILE SECTION.
           02 fstat_nbCommande PIC X(6).
           02 fstat_classe PIC A(1).
 
+          e
+
 WORKING-STORAGE SECTION.
         77 frecl_stat PIC 9(2).
         77 fcl_stat PIC 9(2).
