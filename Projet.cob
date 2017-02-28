@@ -182,3 +182,22 @@ PROCEDURE DIVISION.
            END-READ
         END-PERFORM
         CLOSE reclamations.
+
+        AJOUT_CLIENT.
+        PERFORM WITH TEST AFTER UNTIL Wrep = 0
+        DISPLAY 'AJOUT CLIENT'
+          DISPLAY 'Donnez les informations du client'
+          DISPLAY 'Numero id client ?'
+          ACCEPT fcli_id
+          DISPLAY 'Nom Client ?'
+          ACCEPT fcli_nom
+          DISPLAY 'Prenom Client ?'
+          ACCEPT fcli_prenom
+          DISPLAY 'Telephone Client ?'
+          ACCEPT fe_age
+          WRITE fcliTampon END-WRITE
+          PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
+             DISPLAY 'Souhaitez vous ajouter un client ? 1 ou 0'
+             ACCEPT Wrep
+          END-PERFORM
+        END-PERFORM.
