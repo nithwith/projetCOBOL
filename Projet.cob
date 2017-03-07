@@ -90,7 +90,7 @@ FILE SECTION.
           02 fstata_nbCommande PIC X(6).
           02 fstata_classe PIC A(1).
 
-        FD statistiqucesClients.
+        FD statistiquesClients.
         01 fstatcTampon.
           02 fstatc_idart PIC X(6).
           02 fstatc_date PIC A(15).
