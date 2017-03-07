@@ -90,8 +90,6 @@ FILE SECTION.
           02 fstat_nbCommande PIC X(6).
           02 fstat_classe PIC A(1).
 
-          e
-
 WORKING-STORAGE SECTION.
         77 frecl_stat PIC 9(2).
         77 fcl_stat PIC 9(2).
@@ -101,6 +99,7 @@ WORKING-STORAGE SECTION.
         77 fstatc_stat PIC 9(2).
         77 frecl_idtemp PIC X(6).
         77 Wrep PIC 9.
+        77 Wmenu PIC 9.
         77 Wfin PIC 9.
         77 Wnom PIC A(20).
         77 Wtrouve PIC 9.
@@ -108,9 +107,39 @@ WORKING-STORAGE SECTION.
         77 W1 PIC 9(2).
 
 PROCEDURE DIVISION.
-        PERFORM CREATION_FICHIERS
-        PERFORM EFFECTUER_RECLAMATION
-        PERFORM AFFICHAGE_RECLAMATION
+        PERFORM WITH TEST AFTER UNTIL Wmenu > 7
+            DISPLAY '-------- Gestion S.A.V. --------'
+            DISPLAY '1 --> Ajouter nouveau Client'
+            DISPLAY '2 --> Ajouter nouvel article'
+            DISPLAY '3 --> Ajouter nouvelle commande'
+            DISPLAY '4 --> Ajouter nouvelle réclamation'
+            DISPLAY '5 --> Afficher Client'
+            DISPLAY '6 --> Afficher Commande'
+            DISPLAY '7 --> Afficher Réclamation'
+            DISPLAY '8 --> Quitter'
+            ACCEPT Wmenu
+            IF Wmenu = 1 THEN
+                PERFORM AJOUT_CLIENT
+            END-IF
+            IF Wmenu = 2 THEN
+                PERFORM AJOUT_ARTICLE
+            END-IF
+            IF Wmenu = 3 THEN
+                DISPLAY 'Wait'
+            END-IF
+            IF Wmenu = 4 THEN
+                DISPLAY 'Wait'
+            END-IF
+            IF Wmenu = 5 THEN
+                DISPLAY 'Wait'
+            END-IF
+            IF Wmenu = 6 THEN
+                DISPLAY 'Wait'
+            END-IF
+            IF Wmenu = 7 THEN
+                DISPLAY 'Wait'
+            END-IF
+        END-PERFORM
         STOP RUN.
 
 *> procédure pour créer nos fichiers
@@ -190,16 +219,18 @@ PROCEDURE DIVISION.
         DISPLAY 'AJOUT CLIENT'
           DISPLAY 'Donnez les informations du client'
           DISPLAY 'Numero id client ?'
-          ACCEPT fcli_id
+          ACCEPT fcl_id
           DISPLAY 'Nom Client ?'
-          ACCEPT fcli_nom
+          ACCEPT fcl_nom
           DISPLAY 'Prenom Client ?'
-          ACCEPT fcli_prenom
+          ACCEPT fcl_prenom
           DISPLAY 'Telephone Client ?'
-          ACCEPT fe_age
-          WRITE fcliTampon END-WRITE
+          ACCEPT fcl_tel
+          DISPLAY 'Mail client ?'
+          ACCEPT fcl_mail
+          WRITE fclTampon END-WRITE
           PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
-             DISPLAY 'Souhaitez vous ajouter un client ? 1 ou 0'
+             DISPLAY 'Souhaitez vous ajouter un autre client ? 1 ou 0'
              ACCEPT Wrep
           END-PERFORM
         END-PERFORM.
