@@ -169,19 +169,19 @@ PROCEDURE DIVISION.
                 DISPLAY "Veuillez remplir ce formulaire:" LINE 2 COL 1
                 DISPLAY 'Numéro de commande?' LINE 3 COL 1
                 ACCEPT frecl_idco LINE 4 COL 1
-                DISPLAY 'Quel est le motif de votre réclamation?'
-                ACCEPT frecl_motif
-                DISPLAY 'Détaillez votre problème:'
-                ACCEPT frecl_description
-                DISPLAY "Quelle est la date d'aujourd'hui ?"
-                ACCEPT frecl_date
+                DISPLAY 'Motif de votre réclamation?' LINE 5 COL 1
+                ACCEPT frecl_motif LINE 6 COL 1
+                DISPLAY 'Détaillez votre problème:' LINE 7 COL 1
+                ACCEPT frecl_description LINE 8 COL 1
+                DISPLAY "Date d'aujourd'hui ?" LINE 9 COL 1
+                ACCEPT frecl_date LINE 10 COL 1
                 MOVE 'ouvert' TO frecl_etat
-                DISPLAY 'Informations enregistrées avec succès'
-                DISPLAY 'Nous traitons votre requête'
+                DISPLAY 'Infos enregistrées avec succès' LINE 11 COL 1
+                DISPLAY 'Nous traitons votre requête' LINE 12 COL 35
                 WRITE freclTampon END-WRITE
                 PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
-                        DISPLAY 'Souhaitez vous continuer ? 1 ou 0'
-                        ACCEPT Wrep
+                  DISPLAY 'Nouvelle reclamation ? 1 ou 0' LINE 13 COL 1
+                  ACCEPT Wrep LINE 14 COL 1
                 END-PERFORM
           END-PERFORM
           CLOSE reclamations.
@@ -193,12 +193,13 @@ PROCEDURE DIVISION.
            READ reclamations NEXT
            AT END MOVE 1 TO Wfin
            NOT AT END
-                DISPLAY 'ID Réclamation :', frecl_id
-                DISPLAY 'ID Commande :', frecl_idco
-                DISPLAY 'Motif :', frecl_motif
-                DISPLAY 'Description :', frecl_description
-                DISPLAY 'Etat :', frecl_etat
-                DISPLAY 'note :', frecl_note
+                DISPLAY 'ID Réclamation :', frecl_id WITH BLANK SCREEN
+                DISPLAY 'ID Commande :', frecl_idco LINE 2 COL 1
+                DISPLAY 'Motif :', frecl_motif LINE 3 COL 1
+                DISPLAY 'Description :', frecl_description LINE 4 COL 1
+                DISPLAY 'Etat :', frecl_etat LINE 5 COL 1
+                DISPLAY 'note :', frecl_note LINE 6 COL 1
+                DISPLAY '-----' LINE 7 COL 1
            END-READ
         END-PERFORM
         CLOSE reclamations.
@@ -233,21 +234,21 @@ PROCEDURE DIVISION.
         AJOUT_COMMANDE.
           OPEN I-O commandes
           PERFORM WITH TEST AFTER UNTIL Wrep = 0
-          DISPLAY '------- AJOUT COMMANDE -------'
-          DISPLAY 'Identifiant Commande :'
-          ACCEPT fco_id
-          DISPLAY 'Identifiant Client :'
-          ACCEPT fco_idcl
-          DISPLAY 'Identifiant Article :'
-          ACCEPT fco_idart
-          DISPLAY 'Date de commande :'
-          ACCEPT fco_date
-          DISPLAY 'Code Promo :'
-          ACCEPT fco_promo
+          DISPLAY '------- AJOUT COMMANDE -------' WITH BLANK SCREEN
+          DISPLAY 'Identifiant Commande :' LINE 2 COL 1
+          ACCEPT fco_id LINE 3 COL 1
+          DISPLAY 'Identifiant Client :' LINE 4 COL 1
+          ACCEPT fco_idcl LINE 5 COL 1
+          DISPLAY 'Identifiant Article :' LINE 6 COL 1
+          ACCEPT fco_idart LINE 7 COL 1
+          DISPLAY 'Date de commande :' LINE 8 COL 1
+          ACCEPT fco_date LINE 9 COL 1
+          DISPLAY 'Code Promo :' LINE 10 COL 1
+          ACCEPT fco_promo LINE 11 COL 1
           WRITE fcoTampon END-WRITE
           PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
-            DISPLAY 'Souhaitez-vous ajouter une autre commande ? 1 ou 0'
-            ACCEPT Wrep
+            DISPLAY 'Ajouter une autre commande ? 1 ou 0' LINE 12 COL 1
+            ACCEPT Wrep LINE 13 COL 1
           END-PERFORM
           END-PERFORM
           CLOSE commandes.
@@ -255,23 +256,23 @@ PROCEDURE DIVISION.
         AJOUT_ARTICLE.
           OPEN I-O articles
           PERFORM WITH TEST AFTER UNTIL Wrep = 0
-          DISPLAY "------- AJOUT ARTICLE -------"
-          DISPLAY "id artcile : "
-          ACCEPT fart_id
-          DISPLAY "nom article : "
-          ACCEPT fart_nom
-          DISPLAY "type article : "
-          ACCEPT fart_type
-          DISPLAY "description article : "
-          ACCEPT fart_description
-          DISPLAY "prix article : "
-          ACCEPT fart_prix
-          DISPLAY "duree garantie : "
-          ACCEPT fart_dureegaranti
+          DISPLAY "------- AJOUT ARTICLE -------" WITH BLANK SCREEN
+          DISPLAY "id artcile : " LINE 2 COL 1
+          ACCEPT fart_id LINE 3 COL 1
+          DISPLAY "nom article : " LINE 4 COL 1
+          ACCEPT fart_nom LINE 5 COL 1
+          DISPLAY "type article : " LINE 6 COL 1
+          ACCEPT fart_type LINE 7 COL 1
+          DISPLAY "description article : " LINE 8 COL 1
+          ACCEPT fart_description LINE 9 COL 1
+          DISPLAY "prix article : " LINE 10 COL 1
+          ACCEPT fart_prix LINE 11 COL 1
+          DISPLAY "duree garantie : " LINE 12 COL 1
+          ACCEPT fart_dureegaranti LINE 13 COL 1
           WRITE fartTampon END-WRITE
           PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
-             DISPLAY 'Souhaitez vous ajouter un autre bureau ? 1 ou 0'
-             ACCEPT Wrep
+             DISPLAY 'Ajouter un autre bureau ? 1 ou 0' LINE 14 COL 1
+             ACCEPT Wrep LINE 15 COL 1
             END-PERFORM
           END-PERFORM
           CLOSE articles.
