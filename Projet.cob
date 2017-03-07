@@ -71,7 +71,7 @@ FILE SECTION.
           02 fco_idcl PIC X(6).
           02 fco_idart PIC X(6).
           02 fco_date PIC A(15).
-          02 fco_codep PIC X(4).
+          02 fco_promo PIC X(4).
 
         FD articles.
         01 fartTampon.
@@ -125,10 +125,10 @@ PROCEDURE DIVISION.
                 PERFORM AJOUT_ARTICLE
             END-IF
             IF Wmenu = 3 THEN
-                DISPLAY 'Wait'
+                PERFORM AJOUT_COMMANDE
             END-IF
             IF Wmenu = 4 THEN
-                DISPLAY 'Wait'
+                PERFORM EFFECTUER_RECLAMATION
             END-IF
             IF Wmenu = 5 THEN
                 DISPLAY 'Wait'
@@ -137,21 +137,10 @@ PROCEDURE DIVISION.
                 DISPLAY 'Wait'
             END-IF
             IF Wmenu = 7 THEN
-                DISPLAY 'Wait'
+                PERFORM AFFICHAGE_RECLAMATION
             END-IF
         END-PERFORM
         STOP RUN.
-
-*> procédure pour créer nos fichiers
-        CREATION_FICHIERS.
-        OPEN OUTPUT reclamations
-        CLOSE reclamations
-        OPEN OUTPUT clients
-        CLOSE clients
-        OPEN OUTPUT commandes
-        CLOSE commandes
-        OPEN OUTPUT articles
-        CLOSE articles.
 
 *> numero de réclamation commence a 1.
         NOMBRE_RECLAMATIONS.
@@ -184,7 +173,7 @@ PROCEDURE DIVISION.
                 ACCEPT frecl_motif
                 DISPLAY 'Détaillez votre problème:'
                 ACCEPT frecl_description
-                DISPLAY "Quelle est la date d'aujourd'hui?"
+                DISPLAY "Quelle est la date d'aujourd'hui ?"
                 ACCEPT frecl_date
                 MOVE 'ouvert' TO frecl_etat
                 DISPLAY 'Informations enregistrées avec succès'
@@ -215,9 +204,14 @@ PROCEDURE DIVISION.
         CLOSE reclamations.
 
         AJOUT_CLIENT.
+        OPEN EXTEND clients
+        IF fcl_stat = 35 THEN
+                OPEN OUTPUT clients
+                CLOSE clients
+                OPEN EXTEND clients
+        END-IF
         PERFORM WITH TEST AFTER UNTIL Wrep = 0
-        DISPLAY 'AJOUT CLIENT'
-          DISPLAY 'Donnez les informations du client'
+        DISPLAY '------- AJOUT CLIENT -------'
           DISPLAY 'Numero id client ?'
           ACCEPT fcl_id
           DISPLAY 'Nom Client ?'
@@ -233,7 +227,30 @@ PROCEDURE DIVISION.
              DISPLAY 'Souhaitez vous ajouter un autre client ? 1 ou 0'
              ACCEPT Wrep
           END-PERFORM
-        END-PERFORM.
+        END-PERFORM
+        CLOSE clients.
+
+        AJOUT_COMMANDE.
+          OPEN I-O commandes
+          PERFORM WITH TEST AFTER UNTIL Wrep = 0
+          DISPLAY '------- AJOUT COMMANDE -------'
+          DISPLAY 'Identifiant Commande :'
+          ACCEPT fco_id
+          DISPLAY 'Identifiant Client :'
+          ACCEPT fco_idcl
+          DISPLAY 'Identifiant Article :'
+          ACCEPT fco_idart
+          DISPLAY 'Date de commande :'
+          ACCEPT fco_date
+          DISPLAY 'Code Promo :'
+          ACCEPT fco_promo
+          WRITE fcoTampon END-WRITE
+          PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
+            DISPLAY 'Souhaitez-vous ajouter une autre commande ? 1 ou 0'
+            ACCEPT Wrep
+          END-PERFORM
+          END-PERFORM
+          CLOSE commandes.
 
         AJOUT_ARTICLE.
           OPEN I-O articles
