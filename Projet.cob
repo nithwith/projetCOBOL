@@ -99,7 +99,7 @@ WORKING-STORAGE SECTION.
         77 fstatc_stat PIC 9(2).
         77 frecl_idtemp PIC X(6).
         77 Wrep PIC 9.
-        77 Wmenu PIC 9.
+        77 Wmenu PIC 9(2).
         77 Wfin PIC 9.
         77 Wnom PIC A(20).
         77 Wtrouve PIC 9.
@@ -107,17 +107,17 @@ WORKING-STORAGE SECTION.
         77 W1 PIC 9(2).
 
 PROCEDURE DIVISION.
-        PERFORM WITH TEST AFTER UNTIL Wmenu > 7
-            DISPLAY '-------- Gestion S.A.V. --------'
-            DISPLAY '1 --> Ajouter nouveau Client'
-            DISPLAY '2 --> Ajouter nouvel article'
-            DISPLAY '3 --> Ajouter nouvelle commande'
-            DISPLAY '4 --> Ajouter nouvelle réclamation'
-            DISPLAY '5 --> Afficher Client'
-            DISPLAY '6 --> Afficher Commande'
-            DISPLAY '7 --> Afficher Réclamation'
-            DISPLAY '8 --> Quitter'
-            ACCEPT Wmenu
+        PERFORM WITH TEST AFTER UNTIL Wmenu > 8
+        DISPLAY '-------- Gestion S.A.V. --------' WITH BLANK SCREEN
+            DISPLAY '1 --> Ajouter nouveau Client' LINE 2 COL 1
+            DISPLAY '2 --> Ajouter nouvel article' LINE 3 COL 1
+            DISPLAY '3 --> Ajouter nouvelle commande' LINE 4 COL 1
+            DISPLAY '4 --> Ajouter nouvelle réclamation' LINE 5 COL 1
+            DISPLAY '5 --> Afficher Client' LINE 6 COL 1
+            DISPLAY '6 --> Afficher Commande' LINE 7 COL 1
+            DISPLAY '7 --> Afficher Réclamation' LINE 8 COL 1
+            DISPLAY '8 --> Quitter' LINE 9 COL 1
+            ACCEPT Wmenu LINE 10 COL 1
             IF Wmenu = 1 THEN
                 PERFORM AJOUT_CLIENT
             END-IF
@@ -165,10 +165,10 @@ PROCEDURE DIVISION.
                 PERFORM NOMBRE_RECLAMATIONS
                 OPEN I-O reclamations
                 MOVE frecl_idtemp TO frecl_id
-                DISPLAY "------ RECLAMATION ------"
-                DISPLAY "Veuillez remplir ce formulaire:"
-                DISPLAY 'Quel est votre numéro de commande?'
-                ACCEPT frecl_idco
+                DISPLAY "------ RECLAMATION ------" WITH BLANK SCREEN
+                DISPLAY "Veuillez remplir ce formulaire:" LINE 2 COL 1
+                DISPLAY 'Numéro de commande?' LINE 3 COL 1
+                ACCEPT frecl_idco LINE 4 COL 1
                 DISPLAY 'Quel est le motif de votre réclamation?'
                 ACCEPT frecl_motif
                 DISPLAY 'Détaillez votre problème:'
@@ -211,21 +211,21 @@ PROCEDURE DIVISION.
                 OPEN EXTEND clients
         END-IF
         PERFORM WITH TEST AFTER UNTIL Wrep = 0
-        DISPLAY '------- AJOUT CLIENT -------'
-          DISPLAY 'Numero id client ?'
-          ACCEPT fcl_id
-          DISPLAY 'Nom Client ?'
-          ACCEPT fcl_nom
-          DISPLAY 'Prenom Client ?'
-          ACCEPT fcl_prenom
-          DISPLAY 'Telephone Client ?'
-          ACCEPT fcl_tel
-          DISPLAY 'Mail client ?'
-          ACCEPT fcl_mail
+        DISPLAY '------- AJOUT CLIENT -------' WITH BLANK SCREEN
+          DISPLAY 'Numero id client ?' LINE 2 COL 1
+          ACCEPT fcl_id LINE 3 COL 1
+          DISPLAY 'Nom Client ?' LINE 4 COL 1
+          ACCEPT fcl_nom LINE 5 COL 1
+          DISPLAY 'Prenom Client ?' LINE 6 COL 1
+          ACCEPT fcl_prenom LINE 7 COL 1
+          DISPLAY 'Telephone Client ?' LINE 8 COL 1
+          ACCEPT fcl_tel LINE 9 COL 1
+          DISPLAY 'Mail client ?' LINE 10 COL 1
+          ACCEPT fcl_mail LINE 11 COL 1
           WRITE fclTampon END-WRITE
           PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
-             DISPLAY 'Souhaitez vous ajouter un autre client ? 1 ou 0'
-             ACCEPT Wrep
+             DISPLAY 'Ajouter un autre client ? 1 ou 0' LINE 12 COL 1
+             ACCEPT Wrep LINE 13 COL 1
           END-PERFORM
         END-PERFORM
         CLOSE clients.
