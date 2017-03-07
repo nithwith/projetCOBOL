@@ -99,7 +99,7 @@ WORKING-STORAGE SECTION.
         77 fstatc_stat PIC 9(2).
         77 frecl_idtemp PIC X(6).
         77 Wrep PIC 9.
-        77 Wmenu PIC 9(2).
+        77 Wmenu PIC 9(1).
         77 Wfin PIC 9.
         77 Wnom PIC A(20).
         77 Wtrouve PIC 9.
@@ -107,7 +107,7 @@ WORKING-STORAGE SECTION.
         77 W1 PIC 9(2).
 
 PROCEDURE DIVISION.
-        PERFORM WITH TEST AFTER UNTIL Wmenu > 8
+        PERFORM WITH TEST AFTER UNTIL Wmenu = 8
         DISPLAY '-------- Gestion S.A.V. --------' WITH BLANK SCREEN
             DISPLAY '1 --> Ajouter nouveau Client' LINE 2 COL 1
             DISPLAY '2 --> Ajouter nouvel article' LINE 3 COL 1
@@ -199,7 +199,6 @@ PROCEDURE DIVISION.
                 DISPLAY 'Description :', frecl_description LINE 4 COL 1
                 DISPLAY 'Etat :', frecl_etat LINE 5 COL 1
                 DISPLAY 'note :', frecl_note LINE 6 COL 1
-                DISPLAY '-----' LINE 7 COL 1
            END-READ
         END-PERFORM
         CLOSE reclamations.
