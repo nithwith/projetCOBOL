@@ -35,8 +35,8 @@ FILE-CONTROL.
        SELECT statistiquesArticles ASSIGN TO "statistiquesArticles.dat"
        ORGANIZATION INDEXED
        ACCESS MODE IS DYNAMIC
-       RECORD KEY fstat_idart
-       ALTERNATE RECORD KEY fstat_classe WITH DUPLICATES
+       RECORD KEY fstata_idart
+       ALTERNATE RECORD KEY fstata_classe WITH DUPLICATES
        FILE STATUS IS fstata_stat.
 
        SELECT statistiquesClients ASSIGN TO "statistiquesClients.dat"
@@ -83,12 +83,20 @@ FILE SECTION.
           02 fart_dureegaranti PIC A(20).
 
         FD statistiquesArticles.
-        01 fstatTampon.
-          02 fstat_idart PIC X(6).
-          02 fstat_date PIC A(15).
-          02 fstat_nbrecl PIC X(6).
-          02 fstat_nbCommande PIC X(6).
-          02 fstat_classe PIC A(1).
+        01 fstataTampon.
+          02 fstata_idart PIC X(6).
+          02 fstata_date PIC A(15).
+          02 fstata_nbrecl PIC X(6).
+          02 fstata_nbCommande PIC X(6).
+          02 fstata_classe PIC A(1).
+
+        FD statistiqucesClients.
+        01 fstatcTampon.
+          02 fstatc_idart PIC X(6).
+          02 fstatc_date PIC A(15).
+          02 fstatc_nbrecl PIC X(6).
+          02 fstatc_nbCommande PIC X(6).
+          02 fstatc_classe PIC A(1).
 
 WORKING-STORAGE SECTION.
         77 frecl_stat PIC 9(2).
