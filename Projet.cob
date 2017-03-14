@@ -173,17 +173,17 @@ PROCEDURE DIVISION.
                 PERFORM NOMBRE_RECLAMATIONS
                 OPEN I-O reclamations
                 MOVE frecl_idtemp TO frecl_id
-                DISPLAY "------ RECLAMATION ------" WITH BLANK SCREEN
-                DISPLAY "Veuillez remplir ce formulaire:" LINE 2 COL 1
-                DISPLAY 'Numéro de commande?' LINE 3 COL 1
-                ACCEPT frecl_idco LINE 4 COL 1
-                DISPLAY 'Motif de votre réclamation?' LINE 5 COL 1
-                ACCEPT frecl_motif LINE 6 COL 1
-                DISPLAY 'Détaillez votre problème:' LINE 7 COL 1
-                ACCEPT frecl_description LINE 8 COL 1
-                DISPLAY "Date d'aujourd'hui ?" LINE 9 COL 1
-                ACCEPT frecl_date LINE 10 COL 1
+                DISPLAY '------ RECLAMATION ------' WITH BLANK SCREEN
+                DISPLAY 'Veuillez remplir ce formulaire:' LINE 2 COL 1
+                DISPLAY 'Numéro de commande :' LINE 3 COL 1
+                DISPLAY 'Motif de votre réclamation?' LINE 4 COL 1
+                DISPLAY 'Détaillez votre problème:' LINE 5 COL 1
+                DISPLAY "Date d'aujourd'hui ?" LINE 6 COL 1
                 MOVE 'ouvert' TO frecl_etat
+                ACCEPT frecl_idco LINE 3 COL 32
+                ACCEPT frecl_motif LINE 4 COL 1
+                ACCEPT frecl_description LINE 5 COL 1
+                ACCEPT frecl_date LINE 6 COL 1
                 DISPLAY 'Infos enregistrées avec succès' LINE 11 COL 1
                 DISPLAY 'Nous traitons votre requête' LINE 12 COL 35
                 WRITE freclTampon END-WRITE
@@ -220,19 +220,19 @@ PROCEDURE DIVISION.
         END-IF
         PERFORM WITH TEST AFTER UNTIL Wrep = 0
         DISPLAY '------- AJOUT CLIENT -------' WITH BLANK SCREEN
-          DISPLAY 'Numero id client ?' LINE 2 COL 1
-          ACCEPT fcl_id LINE 3 COL 1
-          DISPLAY 'Nom Client ?' LINE 4 COL 1
-          ACCEPT fcl_nom LINE 5 COL 1
-          DISPLAY 'Prenom Client ?' LINE 6 COL 1
-          ACCEPT fcl_prenom LINE 7 COL 1
-          DISPLAY 'Telephone Client ?' LINE 8 COL 1
-          ACCEPT fcl_tel LINE 9 COL 1
-          DISPLAY 'Mail client ?' LINE 10 COL 1
-          ACCEPT fcl_mail LINE 11 COL 1
+          DISPLAY 'Numero id client :' LINE 2 COL 1
+          DISPLAY 'Nom Client :' LINE 3 COL 1
+          DISPLAY 'Prenom Client :' LINE 4 COL 1
+          DISPLAY 'Telephone Client :' LINE 5 COL 1
+          DISPLAY 'Mail client :' LINE 6 COL 1
+          ACCEPT fcl_id LINE 2 COL 20
+          ACCEPT fcl_nom LINE 3 COL 14
+          ACCEPT fcl_prenom LINE 4 COL 17
+          ACCEPT fcl_tel LINE 5 COL 20
+          ACCEPT fcl_mail LINE 6 COL 15
           WRITE fclTampon END-WRITE
           PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1
-             DISPLAY 'Ajouter un autre client ? 1 ou 0' LINE 12 COL 1
+             DISPLAY 'Ajouter un autre client ? 1 ou 0 :' LINE 12 COL 1
              ACCEPT Wrep LINE 13 COL 1
           END-PERFORM
         END-PERFORM
