@@ -38,7 +38,7 @@
             DISPLAY '------ RECLAMATION ------' WITH BLANK SCREEN
             DISPLAY 'Numéro de Réclamation :' LINE 2 COL 1
             DISPLAY 'Date de la réclamation :' LINE 3 COL 1
-            DISPLAY 'Numero de commande :' LINE 4 COL 1
+            DISPLAY 'Numero de commande (XXX):' LINE 4 COL 1
             DISPLAY 'Motif de votre reclamation :' LINE 5 COL 1
             DISPLAY 'Detaillez votre probleme :' LINE 6 COL 1
             DISPLAY fcpt_val LINE 2 COL 25
@@ -48,7 +48,7 @@
             DISPLAY '/' LINE 3 COL 31
             DISPLAY frecl_annee LINE 3 COL 32
 
-            ACCEPT frecl_idco LINE 4 COL 22
+            ACCEPT frecl_idco LINE 4 COL 27
             MOVE frecl_idco TO fco_id
             READ commandes
 

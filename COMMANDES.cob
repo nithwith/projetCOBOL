@@ -36,8 +36,8 @@
           DISPLAY '------- AJOUT COMMANDE -------' WITH BLANK SCREEN
           DISPLAY 'Identifiant de la commande :' LINE 2 COL 1
           DISPLAY 'Date de commande :' LINE 3 COL 1
-          DISPLAY 'Identifiant Client :' LINE 4 COL 1
-          DISPLAY 'Identifiant Article :' LINE 5 COL 1
+          DISPLAY 'Identifiant Client (XXX):' LINE 4 COL 1
+          DISPLAY 'Identifiant Article (XXX):' LINE 5 COL 1
           DISPLAY 'Code Promo :' LINE 6 COL 1
           DISPLAY fcpt_val LINE 2 COL 30
 
@@ -47,7 +47,7 @@
           DISPLAY fco_mois LINE 3 COL 23
           DISPLAY '/' LINE 3 COL 25
           DISPLAY fco_annee LINE 3 COL 26
-          ACCEPT fco_idcl LINE 4 COL 22
+          ACCEPT fco_idcl LINE 4 COL 27
           MOVE fco_idcl TO fcl_id
           *> On vérifie que le client existe bien
           READ clients
@@ -61,7 +61,7 @@
 
           NOT INVALID KEY
 
-          ACCEPT fco_idart LINE 5 COL 23
+          ACCEPT fco_idart LINE 5 COL 28
           *> Si le client existe, on vérifie que l'article existe aussi
           MOVE fco_idart TO fart_id
           READ articles
