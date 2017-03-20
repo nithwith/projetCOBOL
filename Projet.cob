@@ -102,7 +102,7 @@ FILE SECTION.
           02 fstata_idart PIC 9(3).
           02 fstata_nbrecl PIC 9(3).
           02 fstata_nbCommande PIC 9(3).
-          02 fstata_pourcent PIC 9(2).
+          02 fstata_pourcent PIC 9(3).
 
 WORKING-STORAGE SECTION.
         77 frecl_stat PIC 9(2).

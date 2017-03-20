@@ -27,6 +27,31 @@
           OPEN I-O statistiquesArticles
           OPEN I-O articles
           MOVE 3 TO fcpt_id
+
+          IF fcl_stat = 35 THEN
+            PERFORM WITH TEST AFTER UNTIL Wrep = 1
+            DISPLAY 'Fichier clients inexistant :' WITH BLANK SCREEN
+            DISPLAY 'Saisir sur 1 pour retour menu :' LINE 2 COL 0
+            ACCEPT Wrep LINE 2 COL 33
+            END-PERFORM
+          ELSE
+
+          IF fstata_stat = 35 THEN
+            PERFORM WITH TEST AFTER UNTIL Wrep = 1
+  DISPLAY 'Fichier statistiquesArticles inexistant :' WITH BLANK SCREEN
+            DISPLAY 'Saisir sur 1 pour retour menu :' LINE 2 COL 0
+            ACCEPT Wrep LINE 2 COL 33
+            END-PERFORM
+          ELSE
+          IF fart_stat = 35 THEN
+
+          PERFORM WITH TEST AFTER UNTIL Wrep = 1
+          DISPLAY 'Fichier articles inexistant :' WITH BLANK SCREEN
+          DISPLAY 'Saisir sur 1 pour retour menu :' LINE 2 COL 0
+          ACCEPT Wrep LINE 2 COL 33
+          END-PERFORM
+
+          ELSE
           PERFORM WITH TEST AFTER UNTIL Wrep = 0
 
           READ compteurs
@@ -94,6 +119,9 @@
                 END-READ
           END-READ
           END-PERFORM
+          END-IF
+          END-IF
+          END-IF
           CLOSE compteurs
           CLOSE statistiquesArticles
           CLOSE clients

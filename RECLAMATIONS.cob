@@ -28,6 +28,22 @@
             OPEN I-O statistiquesArticles
             MOVE 1 TO fcpt_id
 
+            IF fco_stat = 35 THEN
+              PERFORM WITH TEST AFTER UNTIL Wrep = 1
+              DISPLAY 'Fichier commandes inexistant :' WITH BLANK SCREEN
+              DISPLAY 'Saisir sur 1 pour retour menu :' LINE 2 COL 0
+              ACCEPT Wrep LINE 2 COL 33
+              END-PERFORM
+            ELSE
+
+            IF fstata_stat = 35 THEN
+              PERFORM WITH TEST AFTER UNTIL Wrep = 1
+   DISPLAY 'Fichier statistiquesArticles inexistant :' WITH BLANK SCREEN
+              DISPLAY 'Saisir sur 1 pour retour menu :' LINE 2 COL 0
+              ACCEPT Wrep LINE 2 COL 33
+              END-PERFORM
+            ELSE
+
             PERFORM WITH TEST AFTER UNTIL Wrep = 0
             *> On récupère le compteur pour définir l'id
             READ compteurs
@@ -51,7 +67,6 @@
             ACCEPT frecl_idco LINE 4 COL 27
             MOVE frecl_idco TO fco_id
             READ commandes
-
             INVALID KEY
             *> Si la commande n'existe pas on affiche un message
                 DISPLAY 'Commande inexistante' WITH BLANK SCREEN
@@ -90,6 +105,8 @@
             END-IF
             END-READ
           END-PERFORM
+          END-IF
+          END-IF
           CLOSE statistiquesArticles
           CLOSE compteurs
           CLOSE commandes
