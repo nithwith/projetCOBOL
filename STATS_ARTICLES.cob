@@ -15,10 +15,10 @@
         ELSE
         *> Sinon on demande l'id article et on calcul le taux de réclamation par rapport
         *> au nombre de commandes passés pour l'article
-        *> On écrit la valeur dans l'enregistrement 
+        *> On écrit la valeur dans l'enregistrement
             DISPLAY "---- Stats Article ----" WITH BLANK SCREEN
-            DISPLAY "Renseigner l'id artcile :" LINE 2 COL 1
-            ACCEPT fstata_idart LINE 2 COL 27
+            DISPLAY "Renseigner l'id artcile (XXX):" LINE 2 COL 1
+            ACCEPT fstata_idart LINE 2 COL 32
             READ statistiquesArticles
             INVALID KEY
               PERFORM WITH TEST AFTER UNTIL Wrep = 0 OR Wrep = 1

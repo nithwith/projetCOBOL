@@ -71,8 +71,8 @@
         *> Sinon on affiche un "menu" demandant l'id du client
         PERFORM WITH TEST AFTER UNTIL Wrep = 0
         DISPLAY '------- Recherche Client -------' WITH BLANK SCREEN
-        DISPLAY "Identifiant du client :" LINE 2 COL 1
-        ACCEPT fcl_id LINE 2 COL 25
+        DISPLAY "Identifiant du client (XXX):" LINE 2 COL 1
+        ACCEPT fcl_id LINE 2 COL 30
         READ clients
         *> On lit le fichier à partir de l'id saisi par le user
         INVALID KEY

@@ -116,8 +116,8 @@
 
           PERFORM WITH TEST AFTER UNTIL Wrep = 0
           DISPLAY '------- Recherche Commande -------' WITH BLANK SCREEN
-          DISPLAY "Identifiant de la commande :" LINE 2 COL 1
-          ACCEPT fco_id LINE 2 COL 30
+          DISPLAY "Identifiant de la commande (XXX):" LINE 2 COL 1
+          ACCEPT fco_id LINE 2 COL 35
           READ commandes
           INVALID KEY
               DISPLAY 'Commande Inexistante' LINE 3 COL 1

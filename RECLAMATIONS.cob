@@ -111,8 +111,8 @@
          *> ON AFFICHE la réclamation
           PERFORM WITH TEST AFTER UNTIL Wrep = 0
           DISPLAY '----- Recherche Reclamation -----' WITH BLANK SCREEN
-            DISPLAY "Identifiant de la reclamation :" LINE 2 COL 1
-            ACCEPT frecl_id LINE 2 COL 33
+            DISPLAY "Identifiant de la reclamation (XXX):" LINE 2 COL 1
+            ACCEPT frecl_id LINE 2 COL 38
             READ reclamations
             INVALID KEY
                 DISPLAY 'Réclamation inexistante' LINE 3 COL 1

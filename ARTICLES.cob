@@ -89,8 +89,8 @@
         ELSE
         PERFORM WITH TEST AFTER UNTIL Wrep = 0
           DISPLAY '------- Recherche Article -------' WITH BLANK SCREEN
-          DISPLAY "Identifiant de l'article :" LINE 2 COL 1
-          ACCEPT fart_id LINE 2 COL 28
+          DISPLAY "Identifiant de l'article (XXX):" LINE 2 COL 1
+          ACCEPT fart_id LINE 2 COL 33
           READ articles
           INVALID KEY
               DISPLAY 'Article Inexistant' LINE 3 COL 1
