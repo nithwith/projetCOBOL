@@ -58,11 +58,10 @@ FILE SECTION.
         FD reclamations.
         01 freclTampon.
           02 frecl_id PIC 9(3).
-          02 frecl_idco PIC X(6).
+          02 frecl_idco PIC 9(3).
           02 frecl_motif PIC A(40).
           02 frecl_description PIC A(40).
           02 frecl_etat PIC A(10).
-          02 frecl_note PIC X(2).
           02 frecl_date_data.
             05 frecl_date.
                 10 frecl_annee PIC 9(4).
@@ -96,7 +95,7 @@ FILE SECTION.
           02 fart_type PIC A(10).
           02 fart_description PIC A(40).
           02 fart_prix PIC X(4).
-          02 fart_dureegaranti PIC A(20).
+          02 fart_dureegaranti PIC 9(1).
 
         FD statistiquesArticles.
         01 fstataTampon.
